@@ -1,0 +1,164 @@
+{
+  "regions": [
+    {
+      "region": "Greater Accra",
+      "taxpayers": 600000,
+      "averageTax": 12000,
+      "totalTax": 7200000000,
+      "salaryTaxpayers": 360000,
+      "eVatTaxpayers": 180000,
+      "otherTaxpayers": 120000,
+      "complianceRate": 0.85
+    },
+    {
+      "region": "Ashanti",
+      "taxpayers": 400000,
+      "averageTax": 10000,
+      "totalTax": 4000000000,
+      "salaryTaxpayers": 240000,
+      "eVatTaxpayers": 120000,
+      "otherTaxpayers": 80000,
+      "complianceRate": 0.80
+    },
+    {
+      "region": "Central",
+      "taxpayers": 160000,
+      "averageTax": 8000,
+      "totalTax": 1280000000,
+      "salaryTaxpayers": 96000,
+      "eVatTaxpayers": 48000,
+      "otherTaxpayers": 32000,
+      "complianceRate": 0.78
+    },
+    {
+      "region": "Eastern",
+      "taxpayers": 140000,
+      "averageTax": 8500,
+      "totalTax": 1190000000,
+      "salaryTaxpayers": 84000,
+      "eVatTaxpayers": 42000,
+      "otherTaxpayers": 28000,
+      "complianceRate": 0.79
+    },
+    {
+      "region": "Western",
+      "taxpayers": 120000,
+      "averageTax": 9000,
+      "totalTax": 1080000000,
+      "salaryTaxpayers": 72000,
+      "eVatTaxpayers": 36000,
+      "otherTaxpayers": 24000,
+      "complianceRate": 0.77
+    },
+    {
+      "region": "Volta",
+      "taxpayers": 100000,
+      "averageTax": 7500,
+      "totalTax": 750000000,
+      "salaryTaxpayers": 60000,
+      "eVatTaxpayers": 30000,
+      "otherTaxpayers": 20000,
+      "complianceRate": 0.76
+    },
+    {
+      "region": "Northern",
+      "taxpayers": 100000,
+      "averageTax": 7000,
+      "totalTax": 700000000,
+      "salaryTaxpayers": 60000,
+      "eVatTaxpayers": 30000,
+      "otherTaxpayers": 20000,
+      "complianceRate": 0.75
+    },
+    {
+      "region": "Bono",
+      "taxpayers": 80000,
+      "averageTax": 8200,
+      "totalTax": 656000000,
+      "salaryTaxpayers": 48000,
+      "eVatTaxpayers": 24000,
+      "otherTaxpayers": 16000,
+      "complianceRate": 0.78
+    },
+    {
+      "region": "Ahafo",
+      "taxpayers": 60000,
+      "averageTax": 7800,
+      "totalTax": 468000000,
+      "salaryTaxpayers": 36000,
+      "eVatTaxpayers": 18000,
+      "otherTaxpayers": 12000,
+      "complianceRate": 0.77
+    },
+    {
+      "region": "Bono East",
+      "taxpayers": 60000,
+      "averageTax": 7600,
+      "totalTax": 456000000,
+      "salaryTaxpayers": 36000,
+      "eVatTaxpayers": 18000,
+      "otherTaxpayers": 12000,
+      "complianceRate": 0.76
+    },
+    {
+      "region": "Western North",
+      "taxpayers": 60000,
+      "averageTax": 7400,
+      "totalTax": 444000000,
+      "salaryTaxpayers": 36000,
+      "eVatTaxpayers": 18000,
+      "otherTaxpayers": 12000,
+      "complianceRate": 0.75
+    },
+    {
+      "region": "Upper East",
+      "taxpayers": 40000,
+      "averageTax": 7200,
+      "totalTax": 288000000,
+      "salaryTaxpayers": 24000,
+      "eVatTaxpayers": 12000,
+      "otherTaxpayers": 8000,
+      "complianceRate": 0.74
+    },
+    {
+      "region": "Upper West",
+      "taxpayers": 40000,
+      "averageTax": 7100,
+      "totalTax": 284000000,
+      "salaryTaxpayers": 24000,
+      "eVatTaxpayers": 12000,
+      "otherTaxpayers": 8000,
+      "complianceRate": 0.73
+    },
+    {
+      "region": "Savannah",
+      "taxpayers": 20000,
+      "averageTax": 7000,
+      "totalTax": 140000000,
+      "salaryTaxpayers": 12000,
+      "eVatTaxpayers": 6000,
+      "otherTaxpayers": 4000,
+      "complianceRate": 0.72
+    },
+    {
+      "region": "North East",
+      "taxpayers": 20000,
+      "averageTax": 6900,
+      "totalTax": 138000000,
+      "salaryTaxpayers": 12000,
+      "eVatTaxpayers": 6000,
+      "otherTaxpayers": 4000,
+      "complianceRate": 0.71
+    },
+    {
+      "region": "Oti",
+      "taxpayers": 20000,
+      "averageTax": 6800,
+      "totalTax": 136000000,
+      "salaryTaxpayers": 12000,
+      "eVatTaxpayers": 6000,
+      "otherTaxpayers": 4000,
+      "complianceRate": 0.70
+    }
+  ]
+}
