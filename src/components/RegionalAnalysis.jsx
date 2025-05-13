@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
-import data from "../data.json";
+import { db } from "../firebase";
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -10,7 +11,17 @@ function RegionalAnalysis() {
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedYear, setSelectedYear] = useState(2025);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editForm, setEditForm] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState(null);
   const chartRef = useRef(null);
+
+  // Available years (2020–2025)
+  const years = Array.from({ length: 6 }, (_, i) => 2020 + i);
 
   useEffect(() => {
     // Cleanup chart on unmount
@@ -22,46 +33,203 @@ function RegionalAnalysis() {
   }, []);
 
   useEffect(() => {
-    const regions = data.regions;
-    const chartData = {
-      labels: regions.map((r) => r.region),
-      datasets: [
-        {
-          label: "Average Tax Paid (GHS)",
-          data: regions.map((r) => r.averageTax),
-          backgroundColor: "rgba(30, 58, 138, 0.8)",
-          borderColor: "rgba(30, 58, 138, 1)",
-          borderWidth: 1,
-          borderRadius: 8,
-          barPercentage: 0.35,
-          hoverBackgroundColor: "rgba(20, 184, 166, 0.9)",
-        },
-        {
-          label: "Compliance Rate (%)",
-          data: regions.map((r) => r.complianceRate * 100),
-          backgroundColor: "rgba(20, 184, 166, 0.8)",
-          borderColor: "rgba(20, 184, 166, 1)",
-          borderWidth: 1,
-          borderRadius: 8,
-          barPercentage: 0.35,
-          hoverBackgroundColor: "rgba(30, 58, 138, 0.9)",
-        },
-      ],
-    };
+    // Fetch data from Firestore
+    async function fetchRegions() {
+      try {
+        setLoading(true);
+        setError(null);
+        const regionsCollection = collection(db, "regions");
+        const snapshot = await getDocs(regionsCollection);
+        const regions = snapshot.docs.map((doc) => doc.data());
 
-    setRegionalData({ regions, chartData });
-  }, []);
+        // Process data for the selected year
+        const processedRegions = regions.map((region) => {
+          const yearData = region.yearlyData.find((d) => d.year === selectedYear) || {
+            taxpayers: 0,
+            averageTax: 0,
+            totalTax: 0,
+            salaryTaxpayers: 0,
+            eVatTaxpayers: 0,
+            otherTaxpayers: 0,
+            complianceRate: 0,
+          };
+          return { region: region.region, ...yearData };
+        });
+
+        const chartData = {
+          labels: processedRegions.map((r) => r.region),
+          datasets: [
+            {
+              label: `Average Tax Paid (GHS) ${selectedYear}`,
+              data: processedRegions.map((r) => r.averageTax),
+              backgroundColor: "rgba(30, 58, 138, 0.8)",
+              borderColor: "rgba(30, 58, 138, 1)",
+              borderWidth: 1,
+              borderRadius: 8,
+              barPercentage: 0.35,
+              hoverBackgroundColor: "rgba(20, 184, 166, 0.9)",
+            },
+            {
+              label: `Compliance Rate (%) ${selectedYear}`,
+              data: processedRegions.map((r) => r.complianceRate * 100),
+              backgroundColor: "rgba(20, 184, 166, 0.8)",
+              borderColor: "rgba(20, 184, 166, 1)",
+              borderWidth: 1,
+              borderRadius: 8,
+              barPercentage: 0.35,
+              hoverBackgroundColor: "rgba(30, 58, 138, 0.9)",
+            },
+          ],
+        };
+
+        setRegionalData({ regions: processedRegions, chartData });
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError("Failed to load data from Firestore. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchRegions();
+  }, [selectedYear]);
 
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
+    setEditMode(false);
+    setEditForm(null);
   };
 
   const clearSelection = () => {
     setSelectedRegion(null);
+    setEditMode(false);
+    setEditForm(null);
   };
 
   const clearSearch = () => {
     setSearchQuery("");
+  };
+
+  const enterEditMode = () => {
+    setEditMode(true);
+    setEditForm({
+      taxpayers: selectedRegion.taxpayers,
+      averageTax: selectedRegion.averageTax,
+      totalTax: selectedRegion.totalTax,
+      salaryTaxpayers: selectedRegion.salaryTaxpayers,
+      eVatTaxpayers: selectedRegion.eVatTaxpayers,
+      otherTaxpayers: selectedRegion.otherTaxpayers,
+      complianceRate: selectedRegion.complianceRate,
+    });
+    setSaveError(null);
+  };
+
+  const handleEditChange = (field, value) => {
+    setEditForm((prev) => ({
+      ...prev,
+      [field]: value === "" ? "" : parseFloat(value) || 0,
+    }));
+  };
+
+  const validateForm = () => {
+    const errors = [];
+    const {
+      taxpayers,
+      averageTax,
+      totalTax,
+      salaryTaxpayers,
+      eVatTaxpayers,
+      otherTaxpayers,
+      complianceRate,
+    } = editForm;
+
+    if (taxpayers < 0) errors.push("Taxpayers cannot be negative.");
+    if (averageTax < 0) errors.push("Average Tax cannot be negative.");
+    if (totalTax < 0) errors.push("Total Tax cannot be negative.");
+    if (salaryTaxpayers < 0) errors.push("Salary Taxpayers cannot be negative.");
+    if (eVatTaxpayers < 0) errors.push("E-VAT Taxpayers cannot be negative.");
+    if (otherTaxpayers < 0) errors.push("Other Taxpayers cannot be negative.");
+    if (complianceRate < 0 || complianceRate > 1) errors.push("Compliance Rate must be between 0 and 1.");
+    if (salaryTaxpayers + eVatTaxpayers + otherTaxpayers > taxpayers) {
+      errors.push("Sum of Salary, E-VAT, and Other Taxpayers cannot exceed Total Taxpayers.");
+    }
+
+    return errors;
+  };
+
+  const saveEdits = async () => {
+    const errors = validateForm();
+    if (errors.length > 0) {
+      setSaveError(errors.join(" "));
+      return;
+    }
+
+    setSaving(true);
+    setSaveError(null);
+
+    try {
+      const regionRef = doc(db, "regions", selectedRegion.region);
+      const snapshot = await getDocs(collection(db, "regions"));
+      const regionData = snapshot.docs.find((d) => d.data().region === selectedRegion.region).data();
+
+      const updatedYearlyData = regionData.yearlyData.map((data) =>
+        data.year === selectedYear ? { ...editForm, year: selectedYear } : data
+      );
+
+      if (!regionData.yearlyData.some((data) => data.year === selectedYear)) {
+        updatedYearlyData.push({ ...editForm, year: selectedYear });
+      }
+
+      await updateDoc(regionRef, { yearlyData: updatedYearlyData });
+
+      // Update local state
+      setRegionalData((prev) => {
+        const updatedRegions = prev.regions.map((r) =>
+          r.region === selectedRegion.region ? { ...editForm, region: r.region } : r
+        );
+        const chartData = {
+          labels: updatedRegions.map((r) => r.region),
+          datasets: [
+            {
+              label: `Average Tax Paid (GHS) ${selectedYear}`,
+              data: updatedRegions.map((r) => r.averageTax),
+              backgroundColor: "rgba(30, 58, 138, 0.8)",
+              borderColor: "rgba(30, 58, 138, 1)",
+              borderWidth: 1,
+              borderRadius: 8,
+              barPercentage: 0.35,
+              hoverBackgroundColor: "rgba(20, 184, 166, 0.9)",
+            },
+            {
+              label: `Compliance Rate (%) ${selectedYear}`,
+              data: updatedRegions.map((r) => r.complianceRate * 100),
+              backgroundColor: "rgba(20, 184, 166, 0.8)",
+              borderColor: "rgba(20, 184, 166, 1)",
+              borderWidth: 1,
+              borderRadius: 8,
+              barPercentage: 0.35,
+              hoverBackgroundColor: "rgba(30, 58, 138, 0.9)",
+            },
+          ],
+        };
+        return { regions: updatedRegions, chartData };
+      });
+
+      setSelectedRegion({ ...editForm, region: selectedRegion.region });
+      setEditMode(false);
+      setEditForm(null);
+    } catch (err) {
+      console.error("Error saving data:", err);
+      setSaveError("Failed to save changes to Firestore. Please try again.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const cancelEdit = () => {
+    setEditMode(false);
+    setEditForm(null);
+    setSaveError(null);
   };
 
   // Filter by tab and search
@@ -83,6 +251,7 @@ function RegionalAnalysis() {
 
     const headers = [
       "Region",
+      "Year",
       "Taxpayers",
       "Avg. Tax (GHS)",
       "Total Tax (GHS)",
@@ -92,12 +261,13 @@ function RegionalAnalysis() {
     ];
     const rows = filteredRegions.map((region) => [
       `"${region.region}"`,
+      selectedYear,
       region.taxpayers.toLocaleString("en-US", { useGrouping: false }),
       region.averageTax.toLocaleString("en-US", { useGrouping: false }),
       region.totalTax.toLocaleString("en-US", { useGrouping: false }),
       (region.complianceRate * 100).toFixed(1),
-      ((region.salaryTaxpayers / region.taxpayers) * 100).toFixed(1),
-      ((region.eVatTaxpayers / region.taxpayers) * 100).toFixed(1),
+      region.taxpayers ? ((region.salaryTaxpayers / region.taxpayers) * 100).toFixed(1) : "0.0",
+      region.taxpayers ? ((region.eVatTaxpayers / region.taxpayers) * 100).toFixed(1) : "0.0",
     ]);
 
     const csvContent = [headers.join(","), ...rows.map((row) => row.join(","))].join("\n");
@@ -105,7 +275,7 @@ function RegionalAnalysis() {
     const link = document.createElement("a");
     const date = new Date().toISOString().slice(0, 10);
     link.setAttribute("href", URL.createObjectURL(blob));
-    link.setAttribute("download", `regional_tax_data_${date}.csv`);
+    link.setAttribute("download", `regional_tax_data_${selectedYear}_${date}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -164,6 +334,17 @@ function RegionalAnalysis() {
             <p className="text-gray-600 mt-2 text-lg">Comparative metrics across Ghana’s regions</p>
           </div>
           <div className="mt-4 md:mt-0 flex items-center space-x-4">
+            <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+              className="px-4 py-2 bg-white/80 border border-gray-300 rounded-lg text-sm text-gray-700 focus:ring-2 focus:ring-teal-500"
+            >
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
             <div className="bg-white/80 backdrop-blur-md p-3 rounded-lg shadow-sm border border-gray-100 flex items-center">
               <svg className="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -173,13 +354,21 @@ function RegionalAnalysis() {
           </div>
         </div>
 
+        {/* Loading and Error States */}
+        {loading && (
+          <div className="text-center text-gray-600 animate-pulse">Loading data...</div>
+        )}
+        {error && (
+          <div className="text-center text-red-600 bg-red-100 p-4 rounded-lg">{error}</div>
+        )}
+
         {/* Chart Section */}
-        {regionalData.chartData && (
+        {!loading && regionalData.chartData && (
           <div className="mb-8 bg-gradient-to-br from-blue-900 to-teal-900 p-6 rounded-xl shadow-lg animate-fade-in">
             <div className="flex justify-between items-center mb-6">
               <div>
                 <h2 className="text-xl font-semibold text-white">Regional Performance Overview</h2>
-                <p className="text-sm text-gray-200 mt-1">Average tax and compliance by region</p>
+                <p className="text-sm text-gray-200 mt-1">Average tax and compliance by region ({selectedYear})</p>
               </div>
               <div className="flex space-x-2">
                 <button className="px-3 py-1.5 text-sm bg-teal-500 text-white rounded-md hover:bg-teal-600 transition-colors">
@@ -197,52 +386,135 @@ function RegionalAnalysis() {
         )}
 
         {/* Region Details Panel */}
-        {selectedRegion && (
+        {!loading && selectedRegion && (
           <div className="mb-8 bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-lg border border-gray-100 animate-fade-in">
             <div className="flex justify-between items-center mb-6">
               <div>
-                <h2 className="text-xl font-semibold text-gray-800">{selectedRegion.region} Region</h2>
-                <babel className="text-sm text-gray-600">Detailed taxpayer metrics</babel>
+                <h2 className="text-xl font-semibold text-gray-800">{selectedRegion.region} Region ({selectedYear})</h2>
+                <p className="text-sm text-gray-600">Detailed taxpayer metrics</p>
               </div>
-              <button
-                onClick={clearSelection}
-                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-500 text-white text-sm font-medium rounded-lg hover:scale-105 transition-transform flex items-center"
-              >
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                Close
-              </button>
+              <div className="flex space-x-2">
+                {!editMode ? (
+                  <button
+                    onClick={enterEditMode}
+                    className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:scale-105 transition-transform flex items-center"
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    Edit
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      onClick={saveEdits}
+                      disabled={saving}
+                      className={`px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:scale-105 transition-transform flex items-center ${
+                        saving ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {saving ? "Saving..." : "Save"}
+                    </button>
+                    <button
+                      onClick={cancelEdit}
+                      disabled={saving}
+                      className={`px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:scale-105 transition-transform flex items-center ${
+                        saving ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
+                    >
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      Cancel
+                    </button>
+                  </>
+                )}
+                <button
+                  onClick={clearSelection}
+                  className="px-4 py-2 bg-gradient-to-r from-blue-600 to-teal-500 text-white text-sm font-medium rounded-lg hover:scale-105 transition-transform flex items-center"
+                >
+                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Close
+                </button>
+              </div>
             </div>
+            {saveError && (
+              <div className="mb-4 text-center text-red-600 bg-red-100 p-4 rounded-lg">{saveError}</div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-gradient-to-br from-blue-50 to-teal-50 p-4 rounded-lg animate-fade-in" style={{ animationDelay: "100ms" }}>
                 <h3 className="text-sm font-medium text-blue-800 mb-2">Taxpayer Demographics</h3>
                 <div className="space-y-3">
                   <div>
                     <p className="text-xs text-gray-600">Total Taxpayers</p>
-                    <p className="text-lg font-semibold">{selectedRegion.taxpayers.toLocaleString()}</p>
+                    {editMode ? (
+                      <input
+                        type="number"
+                        value={editForm.taxpayers}
+                        onChange={(e) => handleEditChange("taxpayers", e.target.value)}
+                        className="w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500"
+                        min="0"
+                      />
+                    ) : (
+                      <p className="text-lg font-semibold">{selectedRegion.taxpayers.toLocaleString()}</p>
+                    )}
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <p className="text-xs text-gray-600">Salary</p>
-                      <p className="font-medium">
-                        {selectedRegion.salaryTaxpayers.toLocaleString()} (
-                        {((selectedRegion.salaryTaxpayers / selectedRegion.taxpayers) * 100).toFixed(1)}%)
-                      </p>
+                      {editMode ? (
+                        <input
+                          type="number"
+                          value={editForm.salaryTaxpayers}
+                          onChange={(e) => handleEditChange("salaryTaxpayers", e.target.value)}
+                          className="w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500"
+                          min="0"
+                        />
+                      ) : (
+                        <p className="font-medium">
+                          {selectedRegion.salaryTaxpayers.toLocaleString()} (
+                          {selectedRegion.taxpayers ? ((selectedRegion.salaryTaxpayers / selectedRegion.taxpayers) * 100).toFixed(1) : "0.0"}%)
+                        </p>
+                      )}
                     </div>
                     <div>
                       <p className="text-xs text-gray-600">E-VAT</p>
-                      <p className="font-medium">
-                        {selectedRegion.eVatTaxpayers.toLocaleString()} (
-                        {((selectedRegion.eVatTaxpayers / selectedRegion.taxpayers) * 100).toFixed(1)}%)
-                      </p>
+                      {editMode ? (
+                        <input
+                          type="number"
+                          value={editForm.eVatTaxpayers}
+                          onChange={(e) => handleEditChange("eVatTaxpayers", e.target.value)}
+                          className="w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500"
+                          min="0"
+                        />
+                      ) : (
+                        <p className="font-medium">
+                          {selectedRegion.eVatTaxpayers.toLocaleString()} (
+                          {selectedRegion.taxpayers ? ((selectedRegion.eVatTaxpayers / selectedRegion.taxpayers) * 100).toFixed(1) : "0.0"}%)
+                        </p>
+                      )}
                     </div>
                     <div>
                       <p className="text-xs text-gray-600">Other</p>
-                      <p className="font-medium">
-                        {selectedRegion.otherTaxpayers.toLocaleString()} (
-                        {((selectedRegion.otherTaxpayers / selectedRegion.taxpayers) * 100).toFixed(1)}%)
-                      </p>
+                      {editMode ? (
+                        <input
+                          type="number"
+                          value={editForm.otherTaxpayers}
+                          onChange={(e) => handleEditChange("otherTaxpayers", e.target.value)}
+                          className="w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500"
+                          min="0"
+                        />
+                      ) : (
+                        <p className="font-medium">
+                          {selectedRegion.otherTaxpayers.toLocaleString()} (
+                          {selectedRegion.taxpayers ? ((selectedRegion.otherTaxpayers / selectedRegion.taxpayers) * 100).toFixed(1) : "0.0"}%)
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -252,11 +524,31 @@ function RegionalAnalysis() {
                 <div className="space-y-3">
                   <div>
                     <p className="text-xs text-gray-600">Total Tax Collected</p>
-                    <p className="text-lg font-semibold">GHS {selectedRegion.totalTax.toLocaleString()}</p>
+                    {editMode ? (
+                      <input
+                        type="number"
+                        value={editForm.totalTax}
+                        onChange={(e) => handleEditChange("totalTax", e.target.value)}
+                        className="w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500"
+                        min="0"
+                      />
+                    ) : (
+                      <p className="text-lg font-semibold">GHS {selectedRegion.totalTax.toLocaleString()}</p>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs text-gray-600">Average Tax Paid</p>
-                    <p className="font-medium">GHS {selectedRegion.averageTax.toLocaleString()}</p>
+                    {editMode ? (
+                      <input
+                        type="number"
+                        value={editForm.averageTax}
+                        onChange={(e) => handleEditChange("averageTax", e.target.value)}
+                        className="w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500"
+                        min="0"
+                      />
+                    ) : (
+                      <p className="font-medium">GHS {selectedRegion.averageTax.toLocaleString()}</p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -265,15 +557,27 @@ function RegionalAnalysis() {
                 <div className="space-y-3">
                   <div>
                     <p className="text-xs text-gray-600">Compliance Rate</p>
-                    <div className="flex items-center">
-                      <div className="w-full bg-gray-200 rounded-full h-2 mr-2">
-                        <div
-                          className="bg-gradient-to-r from-blue-600 to-teal-500 h-2 rounded-full"
-                          style={{ width: `${selectedRegion.complianceRate * 100}%` }}
-                        ></div>
+                    {editMode ? (
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={editForm.complianceRate}
+                        onChange={(e) => handleEditChange("complianceRate", e.target.value)}
+                        className="w-full mt-1 p-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-teal-500"
+                        min="0"
+                        max="1"
+                      />
+                    ) : (
+                      <div className="flex items-center">
+                        <div className="w-full bg-gray-200 rounded-full h-2 mr-2">
+                          <div
+                            className="bg-gradient-to-r from-blue-600 to-teal-500 h-2 rounded-full"
+                            style={{ width: `${selectedRegion.complianceRate * 100}%` }}
+                          ></div>
+                        </div>
+                        <span className="font-medium">{(selectedRegion.complianceRate * 100).toFixed(1)}%</span>
                       </div>
-                      <span className="font-medium">{(selectedRegion.complianceRate * 100).toFixed(1)}%</span>
-                    </div>
+                    )}
                   </div>
                   <div>
                     <p className="text-xs text-gray-600">Compliance Ranking</p>
@@ -291,11 +595,11 @@ function RegionalAnalysis() {
         )}
 
         {/* Regions Table */}
-        {regionalData.regions && (
+        {!loading && regionalData.regions && (
           <div className="bg-white/80 backdrop-blur-md rounded-xl shadow-lg border border-gray-100 overflow-hidden animate-fade-in">
             <div className="px-6 py-4 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center">
               <div>
-                <h2 className="text-xl font-semibold text-gray-800">Regional Tax Data</h2>
+                <h2 className="text-xl font-semibold text-gray-800">Regional Tax Data ({selectedYear})</h2>
                 <p className="text-sm text-gray-600 mt-1">Click any row for detailed metrics</p>
               </div>
               <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-3">
@@ -440,10 +744,10 @@ function RegionalAnalysis() {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {((region.salaryTaxpayers / region.taxpayers) * 100).toFixed(1)}%
+                          {region.taxpayers ? ((region.salaryTaxpayers / region.taxpayers) * 100).toFixed(1) : "0.0"}%
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {((region.eVatTaxpayers / region.taxpayers) * 100).toFixed(1)}%
+                          {region.taxpayers ? ((region.eVatTaxpayers / region.taxpayers) * 100).toFixed(1) : "0.0"}%
                         </td>
                       </tr>
                     ))

@@ -2,163 +2,1040 @@
   "regions": [
     {
       "region": "Greater Accra",
-      "taxpayers": 600000,
-      "averageTax": 12000,
-      "totalTax": 7200000000,
-      "salaryTaxpayers": 360000,
-      "eVatTaxpayers": 180000,
-      "otherTaxpayers": 120000,
-      "complianceRate": 0.85
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 478238,
+          "averageTax": 9572,
+          "totalTax": 4577142857,
+          "salaryTaxpayers": 286943,
+          "eVatTaxpayers": 143471,
+          "otherTaxpayers": 95724,
+          "complianceRate": 0.80
+        },
+        {
+          "year": 2021,
+          "taxpayers": 502150,
+          "averageTax": 10050,
+          "totalTax": 5047142857,
+          "salaryTaxpayers": 301290,
+          "eVatTaxpayers": 150645,
+          "otherTaxpayers": 100430,
+          "complianceRate": 0.81
+        },
+        {
+          "year": 2022,
+          "taxpayers": 527258,
+          "averageTax": 10553,
+          "totalTax": 5557142857,
+          "salaryTaxpayers": 316355,
+          "eVatTaxpayers": 158177,
+          "otherTaxpayers": 105526,
+          "complianceRate": 0.82
+        },
+        {
+          "year": 2023,
+          "taxpayers": 553621,
+          "averageTax": 11080,
+          "totalTax": 6114285714,
+          "salaryTaxpayers": 332173,
+          "eVatTaxpayers": 166086,
+          "otherTaxpayers": 110724,
+          "complianceRate": 0.83
+        },
+        {
+          "year": 2024,
+          "taxpayers": 581302,
+          "averageTax": 11634,
+          "totalTax": 6762857143,
+          "salaryTaxpayers": 348781,
+          "eVatTaxpayers": 174391,
+          "otherTaxpayers": 116260,
+          "complianceRate": 0.84
+        },
+        {
+          "year": 2025,
+          "taxpayers": 600000,
+          "averageTax": 12000,
+          "totalTax": 7200000000,
+          "salaryTaxpayers": 360000,
+          "eVatTaxpayers": 180000,
+          "otherTaxpayers": 120000,
+          "complianceRate": 0.85
+        }
+      ]
     },
     {
       "region": "Ashanti",
-      "taxpayers": 400000,
-      "averageTax": 10000,
-      "totalTax": 4000000000,
-      "salaryTaxpayers": 240000,
-      "eVatTaxpayers": 120000,
-      "otherTaxpayers": 80000,
-      "complianceRate": 0.80
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 318825,
+          "averageTax": 7971,
+          "totalTax": 2541428571,
+          "salaryTaxpayers": 191295,
+          "eVatTaxpayers": 95648,
+          "otherTaxpayers": 63765,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2021,
+          "taxpayers": 334767,
+          "averageTax": 8369,
+          "totalTax": 2801428571,
+          "salaryTaxpayers": 200860,
+          "eVatTaxpayers": 100430,
+          "otherTaxpayers": 66953,
+          "complianceRate": 0.76
+        },
+        {
+          "year": 2022,
+          "taxpayers": 351505,
+          "averageTax": 8788,
+          "totalTax": 3088571429,
+          "salaryTaxpayers": 210903,
+          "eVatTaxpayers": 105452,
+          "otherTaxpayers": 70301,
+          "complianceRate": 0.77
+        },
+        {
+          "year": 2023,
+          "taxpayers": 369080,
+          "averageTax": 9227,
+          "totalTax": 3405714286,
+          "salaryTaxpayers": 221448,
+          "eVatTaxpayers": 110724,
+          "otherTaxpayers": 73816,
+          "complianceRate": 0.78
+        },
+        {
+          "year": 2024,
+          "taxpayers": 387534,
+          "averageTax": 9688,
+          "totalTax": 3754285714,
+          "salaryTaxpayers": 232520,
+          "eVatTaxpayers": 116260,
+          "otherTaxpayers": 77507,
+          "complianceRate": 0.79
+        },
+        {
+          "year": 2025,
+          "taxpayers": 400000,
+          "averageTax": 10000,
+          "totalTax": 4000000000,
+          "salaryTaxpayers": 240000,
+          "eVatTaxpayers": 120000,
+          "otherTaxpayers": 80000,
+          "complianceRate": 0.80
+        }
+      ]
     },
     {
       "region": "Central",
-      "taxpayers": 160000,
-      "averageTax": 8000,
-      "totalTax": 1280000000,
-      "salaryTaxpayers": 96000,
-      "eVatTaxpayers": 48000,
-      "otherTaxpayers": 32000,
-      "complianceRate": 0.78
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 127530,
+          "averageTax": 6376,
+          "totalTax": 812571429,
+          "salaryTaxpayers": 76518,
+          "eVatTaxpayers": 38259,
+          "otherTaxpayers": 25506,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2021,
+          "taxpayers": 133907,
+          "averageTax": 6695,
+          "totalTax": 896571429,
+          "salaryTaxpayers": 80344,
+          "eVatTaxpayers": 40172,
+          "otherTaxpayers": 26781,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2022,
+          "taxpayers": 140602,
+          "averageTax": 7030,
+          "totalTax": 988571429,
+          "salaryTaxpayers": 84361,
+          "eVatTaxpayers": 42181,
+          "otherTaxpayers": 28120,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2023,
+          "taxpayers": 147632,
+          "averageTax": 7381,
+          "totalTax": 1089428571,
+          "salaryTaxpayers": 88579,
+          "eVatTaxpayers": 44290,
+          "otherTaxpayers": 29526,
+          "complianceRate": 0.76
+        },
+        {
+          "year": 2024,
+          "taxpayers": 155014,
+          "averageTax": 7750,
+          "totalTax": 1200857143,
+          "salaryTaxpayers": 93008,
+          "eVatTaxpayers": 46504,
+          "otherTaxpayers": 31003,
+          "complianceRate": 0.77
+        },
+        {
+          "year": 2025,
+          "taxpayers": 160000,
+          "averageTax": 8000,
+          "totalTax": 1280000000,
+          "salaryTaxpayers": 96000,
+          "eVatTaxpayers": 48000,
+          "otherTaxpayers": 32000,
+          "complianceRate": 0.78
+        }
+      ]
     },
     {
       "region": "Eastern",
-      "taxpayers": 140000,
-      "averageTax": 8500,
-      "totalTax": 1190000000,
-      "salaryTaxpayers": 84000,
-      "eVatTaxpayers": 42000,
-      "otherTaxpayers": 28000,
-      "complianceRate": 0.79
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 111612,
+          "averageTax": 6776,
+          "totalTax": 756285714,
+          "salaryTaxpayers": 66967,
+          "eVatTaxpayers": 33484,
+          "otherTaxpayers": 22322,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2021,
+          "taxpayers": 117193,
+          "averageTax": 7115,
+          "totalTax": 833857143,
+          "salaryTaxpayers": 70316,
+          "eVatTaxpayers": 35158,
+          "otherTaxpayers": 23439,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2022,
+          "taxpayers": 123052,
+          "averageTax": 7471,
+          "totalTax": 919428571,
+          "salaryTaxpayers": 73831,
+          "eVatTaxpayers": 36916,
+          "otherTaxpayers": 24610,
+          "complianceRate": 0.76
+        },
+        {
+          "year": 2023,
+          "taxpayers": 129205,
+          "averageTax": 7844,
+          "totalTax": 1013571429,
+          "salaryTaxpayers": 77523,
+          "eVatTaxpayers": 38762,
+          "otherTaxpayers": 25841,
+          "complianceRate": 0.77
+        },
+        {
+          "year": 2024,
+          "taxpayers": 135665,
+          "averageTax": 8237,
+          "totalTax": 1117714286,
+          "salaryTaxpayers": 81399,
+          "eVatTaxpayers": 40700,
+          "otherTaxpayers": 27133,
+          "complianceRate": 0.78
+        },
+        {
+          "year": 2025,
+          "taxpayers": 140000,
+          "averageTax": 8500,
+          "totalTax": 1190000000,
+          "salaryTaxpayers": 84000,
+          "eVatTaxpayers": 42000,
+          "otherTaxpayers": 28000,
+          "complianceRate": 0.79
+        }
+      ]
     },
     {
       "region": "Western",
-      "taxpayers": 120000,
-      "averageTax": 9000,
-      "totalTax": 1080000000,
-      "salaryTaxpayers": 72000,
-      "eVatTaxpayers": 36000,
-      "otherTaxpayers": 24000,
-      "complianceRate": 0.77
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 95648,
+          "averageTax": 7172,
+          "totalTax": 685714286,
+          "salaryTaxpayers": 57389,
+          "eVatTaxpayers": 28694,
+          "otherTaxpayers": 19130,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2021,
+          "taxpayers": 100430,
+          "averageTax": 7530,
+          "totalTax": 755714286,
+          "salaryTaxpayers": 60258,
+          "eVatTaxpayers": 30129,
+          "otherTaxpayers": 20086,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2022,
+          "taxpayers": 105452,
+          "averageTax": 7907,
+          "totalTax": 834285714,
+          "salaryTaxpayers": 63271,
+          "eVatTaxpayers": 31636,
+          "otherTaxpayers": 21090,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2023,
+          "taxpayers": 110724,
+          "averageTax": 8302,
+          "totalTax": 918857143,
+          "salaryTaxpayers": 66434,
+          "eVatTaxpayers": 33217,
+          "otherTaxpayers": 22145,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2024,
+          "taxpayers": 116260,
+          "averageTax": 8717,
+          "totalTax": 1013142857,
+          "salaryTaxpayers": 69756,
+          "eVatTaxpayers": 34878,
+          "otherTaxpayers": 23252,
+          "complianceRate": 0.76
+        },
+        {
+          "year": 2025,
+          "taxpayers": 120000,
+          "averageTax": 9000,
+          "totalTax": 1080000000,
+          "salaryTaxpayers": 72000,
+          "eVatTaxpayers": 36000,
+          "otherTaxpayers": 24000,
+          "complianceRate": 0.77
+        }
+      ]
     },
     {
       "region": "Volta",
-      "taxpayers": 100000,
-      "averageTax": 7500,
-      "totalTax": 750000000,
-      "salaryTaxpayers": 60000,
-      "eVatTaxpayers": 30000,
-      "otherTaxpayers": 20000,
-      "complianceRate": 0.76
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 79706,
+          "averageTax": 5980,
+          "totalTax": 476428571,
+          "salaryTaxpayers": 47824,
+          "eVatTaxpayers": 23912,
+          "otherTaxpayers": 15941,
+          "complianceRate": 0.71
+        },
+        {
+          "year": 2021,
+          "taxpayers": 83692,
+          "averageTax": 6279,
+          "totalTax": 525428571,
+          "salaryTaxpayers": 50215,
+          "eVatTaxpayers": 25108,
+          "otherTaxpayers": 16738,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2022,
+          "taxpayers": 87876,
+          "averageTax": 6593,
+          "totalTax": 579428571,
+          "salaryTaxpayers": 52726,
+          "eVatTaxpayers": 26363,
+          "otherTaxpayers": 17575,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2023,
+          "taxpayers": 92270,
+          "averageTax": 6923,
+          "totalTax": 638857143,
+          "salaryTaxpayers": 55362,
+          "eVatTaxpayers": 27681,
+          "otherTaxpayers": 18454,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2024,
+          "taxpayers": 96884,
+          "averageTax": 7269,
+          "totalTax": 704285714,
+          "salaryTaxpayers": 58130,
+          "eVatTaxpayers": 29065,
+          "otherTaxpayers": 19377,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2025,
+          "taxpayers": 100000,
+          "averageTax": 7500,
+          "totalTax": 750000000,
+          "salaryTaxpayers": 60000,
+          "eVatTaxpayers": 30000,
+          "otherTaxpayers": 20000,
+          "complianceRate": 0.76
+        }
+      ]
     },
     {
       "region": "Northern",
-      "taxpayers": 100000,
-      "averageTax": 7000,
-      "totalTax": 700000000,
-      "salaryTaxpayers": 60000,
-      "eVatTaxpayers": 30000,
-      "otherTaxpayers": 20000,
-      "complianceRate": 0.75
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 79706,
+          "averageTax": 5580,
+          "totalTax": 444571429,
+          "salaryTaxpayers": 47824,
+          "eVatTaxpayers": 23912,
+          "otherTaxpayers": 15941,
+          "complianceRate": 0.70
+        },
+        {
+          "year": 2021,
+          "taxpayers": 83692,
+          "averageTax": 5859,
+          "totalTax": 490571429,
+          "salaryTaxpayers": 50215,
+          "eVatTaxpayers": 25108,
+          "otherTaxpayers": 16738,
+          "complianceRate": 0.71
+        },
+        {
+          "year": 2022,
+          "taxpayers": 87876,
+          "averageTax": 6152,
+          "totalTax": 540571429,
+          "salaryTaxpayers": 52726,
+          "eVatTaxpayers": 26363,
+          "otherTaxpayers": 17575,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2023,
+          "taxpayers": 92270,
+          "averageTax": 6459,
+          "totalTax": 595714286,
+          "salaryTaxpayers": 55362,
+          "eVatTaxpayers": 27681,
+          "otherTaxpayers": 18454,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2024,
+          "taxpayers": 96884,
+          "averageTax": 6782,
+          "totalTax": 657142857,
+          "salaryTaxpayers": 58130,
+          "eVatTaxpayers": 29065,
+          "otherTaxpayers": 19377,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2025,
+          "taxpayers": 100000,
+          "averageTax": 7000,
+          "totalTax": 700000000,
+          "salaryTaxpayers": 60000,
+          "eVatTaxpayers": 30000,
+          "otherTaxpayers": 20000,
+          "complianceRate": 0.75
+        }
+      ]
     },
     {
       "region": "Bono",
-      "taxpayers": 80000,
-      "averageTax": 8200,
-      "totalTax": 656000000,
-      "salaryTaxpayers": 48000,
-      "eVatTaxpayers": 24000,
-      "otherTaxpayers": 16000,
-      "complianceRate": 0.78
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 63765,
+          "averageTax": 6536,
+          "totalTax": 416571429,
+          "salaryTaxpayers": 38259,
+          "eVatTaxpayers": 19130,
+          "otherTaxpayers": 12753,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2021,
+          "taxpayers": 66953,
+          "averageTax": 6863,
+          "totalTax": 459571429,
+          "salaryTaxpayers": 40172,
+          "eVatTaxpayers": 20086,
+          "otherTaxpayers": 13391,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2022,
+          "taxpayers": 70301,
+          "averageTax": 7206,
+          "totalTax": 506571429,
+          "salaryTaxpayers": 42181,
+          "eVatTaxpayers": 21090,
+          "otherTaxpayers": 14060,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2023,
+          "taxpayers": 73816,
+          "averageTax": 7566,
+          "totalTax": 558285714,
+          "salaryTaxpayers": 44290,
+          "eVatTaxpayers": 22145,
+          "otherTaxpayers": 14763,
+          "complianceRate": 0.76
+        },
+        {
+          "year": 2024,
+          "taxpayers": 77507,
+          "averageTax": 7945,
+          "totalTax": 615714286,
+          "salaryTaxpayers": 46504,
+          "eVatTaxpayers": 23252,
+          "otherTaxpayers": 15501,
+          "complianceRate": 0.77
+        },
+        {
+          "year": 2025,
+          "taxpayers": 80000,
+          "averageTax": 8200,
+          "totalTax": 656000000,
+          "salaryTaxpayers": 48000,
+          "eVatTaxpayers": 24000,
+          "otherTaxpayers": 16000,
+          "complianceRate": 0.78
+        }
+      ]
     },
     {
       "region": "Ahafo",
-      "taxpayers": 60000,
-      "averageTax": 7800,
-      "totalTax": 468000000,
-      "salaryTaxpayers": 36000,
-      "eVatTaxpayers": 18000,
-      "otherTaxpayers": 12000,
-      "complianceRate": 0.77
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 47824,
+          "averageTax": 6216,
+          "totalTax": 297142857,
+          "salaryTaxpayers": 28694,
+          "eVatTaxpayers": 14347,
+          "otherTaxpayers": 9565,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2021,
+          "taxpayers": 50215,
+          "averageTax": 6527,
+          "totalTax": 327714286,
+          "salaryTaxpayers": 30129,
+          "eVatTaxpayers": 15065,
+          "otherTaxpayers": 10043,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2022,
+          "taxpayers": 52726,
+          "averageTax": 6853,
+          "totalTax": 361428571,
+          "salaryTaxpayers": 31636,
+          "eVatTaxpayers": 15818,
+          "otherTaxpayers": 10545,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2023,
+          "taxpayers": 55362,
+          "averageTax": 7196,
+          "totalTax": 398285714,
+          "salaryTaxpayers": 33217,
+          "eVatTaxpayers": 16609,
+          "otherTaxpayers": 11072,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2024,
+          "taxpayers": 58130,
+          "averageTax": 7556,
+          "totalTax": 439142857,
+          "salaryTaxpayers": 34878,
+          "eVatTaxpayers": 17439,
+          "otherTaxpayers": 11626,
+          "complianceRate": 0.76
+        },
+        {
+          "year": 2025,
+          "taxpayers": 60000,
+          "averageTax": 7800,
+          "totalTax": 468000000,
+          "salaryTaxpayers": 36000,
+          "eVatTaxpayers": 18000,
+          "otherTaxpayers": 12000,
+          "complianceRate": 0.77
+        }
+      ]
     },
     {
       "region": "Bono East",
-      "taxpayers": 60000,
-      "averageTax": 7600,
-      "totalTax": 456000000,
-      "salaryTaxpayers": 36000,
-      "eVatTaxpayers": 18000,
-      "otherTaxpayers": 12000,
-      "complianceRate": 0.76
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 47824,
+          "averageTax": 6056,
+          "totalTax": 289714286,
+          "salaryTaxpayers": 28694,
+          "eVatTaxpayers": 14347,
+          "otherTaxpayers": 9565,
+          "complianceRate": 0.71
+        },
+        {
+          "year": 2021,
+          "taxpayers": 50215,
+          "averageTax": 6359,
+          "totalTax": 319285714,
+          "salaryTaxpayers": 30129,
+          "eVatTaxpayers": 15065,
+          "otherTaxpayers": 10043,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2022,
+          "taxpayers": 52726,
+          "averageTax": 6677,
+          "totalTax": 352000000,
+          "salaryTaxpayers": 31636,
+          "eVatTaxpayers": 15818,
+          "otherTaxpayers": 10545,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2023,
+          "taxpayers": 55362,
+          "averageTax": 7011,
+          "totalTax": 388000000,
+          "salaryTaxpayers": 33217,
+          "eVatTaxpayers": 16609,
+          "otherTaxpayers": 11072,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2024,
+          "taxpayers": 58130,
+          "averageTax": 7361,
+          "totalTax": 427714286,
+          "salaryTaxpayers": 34878,
+          "eVatTaxpayers": 17439,
+          "otherTaxpayers": 11626,
+          "complianceRate": 0.75
+        },
+        {
+          "year": 2025,
+          "taxpayers": 60000,
+          "averageTax": 7600,
+          "totalTax": 456000000,
+          "salaryTaxpayers": 36000,
+          "eVatTaxpayers": 18000,
+          "otherTaxpayers": 12000,
+          "complianceRate": 0.76
+        }
+      ]
     },
     {
       "region": "Western North",
-      "taxpayers": 60000,
-      "averageTax": 7400,
-      "totalTax": 444000000,
-      "salaryTaxpayers": 36000,
-      "eVatTaxpayers": 18000,
-      "otherTaxpayers": 12000,
-      "complianceRate": 0.75
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 47824,
+          "averageTax": 5896,
+          "totalTax": 282000000,
+          "salaryTaxpayers": 28694,
+          "eVatTaxpayers": 14347,
+          "otherTaxpayers": 9565,
+          "complianceRate": 0.70
+        },
+        {
+          "year": 2021,
+          "taxpayers": 50215,
+          "averageTax": 6191,
+          "totalTax": 310714286,
+          "salaryTaxpayers": 30129,
+          "eVatTaxpayers": 15065,
+          "otherTaxpayers": 10043,
+          "complianceRate": 0.71
+        },
+        {
+          "year": 2022,
+          "taxpayers": 52726,
+          "averageTax": 6500,
+          "totalTax": 342714286,
+          "salaryTaxpayers": 31636,
+          "eVatTaxpayers": 15818,
+          "otherTaxpayers": 10545,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2023,
+          "taxpayers": 55362,
+          "averageTax": 6825,
+          "totalTax": 377714286,
+          "salaryTaxpayers": 33217,
+          "eVatTaxpayers": 16609,
+          "otherTaxpayers": 11072,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2024,
+          "taxpayers": 58130,
+          "averageTax": 7166,
+          "totalTax": 416571429,
+          "salaryTaxpayers": 34878,
+          "eVatTaxpayers": 17439,
+          "otherTaxpayers": 11626,
+          "complianceRate": 0.74
+        },
+        {
+          "year": 2025,
+          "taxpayers": 60000,
+          "averageTax": 7400,
+          "totalTax": 444000000,
+          "salaryTaxpayers": 36000,
+          "eVatTaxpayers": 18000,
+          "otherTaxpayers": 12000,
+          "complianceRate": 0.75
+        }
+      ]
     },
     {
       "region": "Upper East",
-      "taxpayers": 40000,
-      "averageTax": 7200,
-      "totalTax": 288000000,
-      "salaryTaxpayers": 24000,
-      "eVatTaxpayers": 12000,
-      "otherTaxpayers": 8000,
-      "complianceRate": 0.74
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 31883,
+          "averageTax": 5736,
+          "totalTax": 182857143,
+          "salaryTaxpayers": 19130,
+          "eVatTaxpayers": 9565,
+          "otherTaxpayers": 6377,
+          "complianceRate": 0.69
+        },
+        {
+          "year": 2021,
+          "taxpayers": 33477,
+          "averageTax": 6023,
+          "totalTax": 201714286,
+          "salaryTaxpayers": 20086,
+          "eVatTaxpayers": 10043,
+          "otherTaxpayers": 6695,
+          "complianceRate": 0.70
+        },
+        {
+          "year": 2022,
+          "taxpayers": 35151,
+          "averageTax": 6324,
+          "totalTax": 222285714,
+          "salaryTaxpayers": 21090,
+          "eVatTaxpayers": 10545,
+          "otherTaxpayers": 7030,
+          "complianceRate": 0.71
+        },
+        {
+          "year": 2023,
+          "taxpayers": 36908,
+          "averageTax": 6640,
+          "totalTax": 245142857,
+          "salaryTaxpayers": 22145,
+          "eVatTaxpayers": 11072,
+          "otherTaxpayers": 7382,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2024,
+          "taxpayers": 38753,
+          "averageTax": 6972,
+          "totalTax": 270285714,
+          "salaryTaxpayers": 23252,
+          "eVatTaxpayers": 11626,
+          "otherTaxpayers": 7751,
+          "complianceRate": 0.73
+        },
+        {
+          "year": 2025,
+          "taxpayers": 40000,
+          "averageTax": 7200,
+          "totalTax": 288000000,
+          "salaryTaxpayers": 24000,
+          "eVatTaxpayers": 12000,
+          "otherTaxpayers": 8000,
+          "complianceRate": 0.74
+        }
+      ]
     },
     {
       "region": "Upper West",
-      "taxpayers": 40000,
-      "averageTax": 7100,
-      "totalTax": 284000000,
-      "salaryTaxpayers": 24000,
-      "eVatTaxpayers": 12000,
-      "otherTaxpayers": 8000,
-      "complianceRate": 0.73
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 31883,
+          "averageTax": 5656,
+          "totalTax": 180285714,
+          "salaryTaxpayers": 19130,
+          "eVatTaxpayers": 9565,
+          "otherTaxpayers": 6377,
+          "complianceRate": 0.68
+        },
+        {
+          "year": 2021,
+          "taxpayers": 33477,
+          "averageTax": 5939,
+          "totalTax": 198857143,
+          "salaryTaxpayers": 20086,
+          "eVatTaxpayers": 10043,
+          "otherTaxpayers": 6695,
+          "complianceRate": 0.69
+        },
+        {
+          "year": 2022,
+          "taxpayers": 35151,
+          "averageTax": 6236,
+          "totalTax": 219285714,
+          "salaryTaxpayers": 21090,
+          "eVatTaxpayers": 10545,
+          "otherTaxpayers": 7030,
+          "complianceRate": 0.70
+        },
+        {
+          "year": 2023,
+          "taxpayers": 36908,
+          "averageTax": 6548,
+          "totalTax": 241714286,
+          "salaryTaxpayers": 22145,
+          "eVatTaxpayers": 11072,
+          "otherTaxpayers": 7382,
+          "complianceRate": 0.71
+        },
+        {
+          "year": 2024,
+          "taxpayers": 38753,
+          "averageTax": 6875,
+          "totalTax": 266571429,
+          "salaryTaxpayers": 23252,
+          "eVatTaxpayers": 11626,
+          "otherTaxpayers": 7751,
+          "complianceRate": 0.72
+        },
+        {
+          "year": 2025,
+          "taxpayers": 40000,
+          "averageTax": 7100,
+          "totalTax": 284000000,
+          "salaryTaxpayers": 24000,
+          "eVatTaxpayers": 12000,
+          "otherTaxpayers": 8000,
+          "complianceRate": 0.73
+        }
+      ]
     },
     {
       "region": "Savannah",
-      "taxpayers": 20000,
-      "averageTax": 7000,
-      "totalTax": 140000000,
-      "salaryTaxpayers": 12000,
-      "eVatTaxpayers": 6000,
-      "otherTaxpayers": 4000,
-      "complianceRate": 0.72
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 15941,
+          "averageTax": 5576,
+          "totalTax": 88857143,
+          "salaryTaxpayers": 9565,
+          "eVatTaxpayers": 4782,
+          "otherTaxpayers": 3188,
+          "complianceRate": 0.67
+        },
+        {
+          "year": 2021,
+          "taxpayers": 16738,
+          "averageTax": 5855,
+          "totalTax": 98000000,
+          "salaryTaxpayers": 10043,
+          "eVatTaxpayers": 5021,
+          "otherTaxpayers": 334 },{
+          "year": 2022,
+          "taxpayers": 17575,
+          "averageTax": 6148,
+          "totalTax": 108000000,
+          "salaryTaxpayers": 10545,
+          "eVatTaxpayers": 5273,
+          "otherTaxpayers": 3515,
+          "complianceRate": 0.69
+        },
+        {
+          "year": 2023,
+          "taxpayers": 18454,
+          "averageTax": 6455,
+          "totalTax": 119142857,
+          "salaryTaxpayers": 11072,
+          "eVatTaxpayers": 5536,
+          "otherTaxpayers": 3691,
+          "complianceRate": 0.70
+        },
+        {
+          "year": 2024,
+          "taxpayers": 19377,
+          "averageTax": 6778,
+          "totalTax": 131428571,
+          "salaryTaxpayers": 11626,
+          "eVatTaxpayers": 5813,
+          "otherTaxpayers": 3875,
+          "complianceRate": 0.71
+        },
+        {
+          "year": 2025,
+          "taxpayers": 20000,
+          "averageTax": 7000,
+          "totalTax": 140000000,
+          "salaryTaxpayers": 12000,
+          "eVatTaxpayers": 6000,
+          "otherTaxpayers": 4000,
+          "complianceRate": 0.72
+        }
+      ]
     },
     {
       "region": "North East",
-      "taxpayers": 20000,
-      "averageTax": 6900,
-      "totalTax": 138000000,
-      "salaryTaxpayers": 12000,
-      "eVatTaxpayers": 6000,
-      "otherTaxpayers": 4000,
-      "complianceRate": 0.71
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 15941,
+          "averageTax": 5496,
+          "totalTax": 87600000,
+          "salaryTaxpayers": 9565,
+          "eVatTaxpayers": 4782,
+          "otherTaxpayers": 3188,
+          "complianceRate": 0.66
+        },
+        {
+          "year": 2021,
+          "taxpayers": 16738,
+          "averageTax": 5771,
+          "totalTax": 96600000,
+          "salaryTaxpayers": 10043,
+          "eVatTaxpayers": 5021,
+          "otherTaxpayers": 3348,
+          "complianceRate": 0.67
+        },
+        {
+          "year": 2022,
+          "taxpayers": 17575,
+          "averageTax": 6060,
+          "totalTax": 106571429,
+          "salaryTaxpayers": 10545,
+          "eVatTaxpayers": 5273,
+          "otherTaxpayers": 3515,
+          "complianceRate": 0.68
+        },
+        {
+          "year": 2023,
+          "taxpayers": 18454,
+          "averageTax": 6363,
+          "totalTax": 117428571,
+          "salaryTaxpayers": 11072,
+          "eVatTaxpayers": 5536,
+          "otherTaxpayers": 3691,
+          "complianceRate": 0.69
+        },
+        {
+          "year": 2024,
+          "taxpayers": 19377,
+          "averageTax": 6681,
+          "totalTax": 129428571,
+          "salaryTaxpayers": 11626,
+          "eVatTaxpayers": 5813,
+          "otherTaxpayers": 3875,
+          "complianceRate": 0.70
+        },
+        {
+          "year": 2025,
+          "taxpayers": 20000,
+          "averageTax": 6900,
+          "totalTax": 138000000,
+          "salaryTaxpayers": 12000,
+          "eVatTaxpayers": 6000,
+          "otherTaxpayers": 4000,
+          "complianceRate": 0.71
+        }
+      ]
     },
     {
       "region": "Oti",
-      "taxpayers": 20000,
-      "averageTax": 6800,
-      "totalTax": 136000000,
-      "salaryTaxpayers": 12000,
-      "eVatTaxpayers": 6000,
-      "otherTaxpayers": 4000,
-      "complianceRate": 0.70
+      "yearlyData": [
+        {
+          "year": 2020,
+          "taxpayers": 15941,
+          "averageTax": 5416,
+          "totalTax": 86342857,
+          "salaryTaxpayers": 9565,
+          "eVatTaxpayers": 4782,
+          "otherTaxpayers": 3188,
+          "complianceRate": 0.65
+        },
+        {
+          "year": 2021,
+          "taxpayers": 16738,
+          "averageTax": 5687,
+          "totalTax": 95142857,
+          "salaryTaxpayers": 10043,
+          "eVatTaxpayers": 5021,
+          "otherTaxpayers": 3348,
+          "complianceRate": 0.66
+        },
+        {
+          "year": 2022,
+          "taxpayers": 17575,
+          "averageTax": 5971,
+          "totalTax": 104914286,
+          "salaryTaxpayers": 10545,
+          "eVatTaxpayers": 5273,
+          "otherTaxpayers": 3515,
+          "complianceRate": 0.67
+        },
+        {
+          "year": 2023,
+          "taxpayers": 18454,
+          "averageTax": 6270,
+          "totalTax": 115714286,
+          "salaryTaxpayers": 11072,
+          "eVatTaxpayers": 5536,
+          "otherTaxpayers": 3691,
+          "complianceRate": 0.68
+        },
+        {
+          "year": 2024,
+          "taxpayers": 19377,
+          "averageTax": 6583,
+          "totalTax": 127571429,
+          "salaryTaxpayers": 11626,
+          "eVatTaxpayers": 5813,
+          "otherTaxpayers": 3875,
+          "complianceRate": 0.69
+        },
+        {
+          "year": 2025,
+          "taxpayers": 20000,
+          "averageTax": 6800,
+          "totalTax": 136000000,
+          "salaryTaxpayers": 12000,
+          "eVatTaxpayers": 6000,
+          "otherTaxpayers": 4000,
+          "complianceRate": 0.70
+        }
+      ]
     }
   ]
 }
